@@ -4,7 +4,7 @@
 
 <!--Design Scene to Save-->
 
-<!------3D Scene-------->
+<!---3D Scene--->
 <a-scene
  stats="false"
  bloom
@@ -16,7 +16,7 @@
  vr-mode-ui="enabled: false">
 
 
-	<!-------3D Skybox-------->
+	<!----3D Skybox---->
 	<a-sky 
     src=""
     id="sky" 
@@ -26,7 +26,7 @@
       sunPosition: 17 41 27;">
 	</a-sky>
     
-	<!----Game Navigation------>
+	<!--Game Navigation-->
 	<a-entity 
     id="NavMesh" 
 	  nav-mesh
@@ -36,7 +36,7 @@
     position="0 0 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
 	</a-entity>
   
-  <!------Character Model-------->
+  <!--Character Model-->
   <a-entity 
     id="Model"
     scale="5 5 5"
@@ -49,7 +49,7 @@
     static-body>
   </a-entity>
 
-	<!-------Game World-------->
+	<!--Game World-->
   <a-entity 
     id="World" 
     shadow
@@ -60,14 +60,14 @@
   
 
   
- <!------World Sound-------> 
+ <!---World Sound---> 
  <a-entity 
     id="sound"
     position="0 0 0" 
     sound="src: url( ); autoplay: true; volume: 60; loop: true;">
   </a-entity>
 
-	<!----Scene Camera----->
+	<!---Scene Camera--->
 	<a-entity 
     id="rig" 
     kinematic-body
@@ -86,7 +86,7 @@
 	    </a-entity>
 	</a-entity>
 
-	<!----3D Lighting------>
+	<!---3D Lighting--->
 	<a-light 
     id="Light_World" 
     color="white" 
@@ -104,7 +104,7 @@
     type="directional">
 	</a-light>
 
-  <!---Special Effects----> 
+  <!--Special Effects--> 
   <a-entity 
     id="Effect_2" 
     position="1 45 10" 
@@ -130,7 +130,7 @@
       fog: false;">
   </a-entity>
 
-  <!------3D Sound-------> 
+  <!---3D Sound---> 
   <a-resonance-audio-room 
     id="Audio" 
     width="10" 
@@ -192,7 +192,7 @@
       </a-entity> 
   </a-resonance-audio-room>
 
-  <!----Animated Shader-------> 
+  <!--Animated Shader--> 
   <a-entity 
     id="Visual"
     scale="10 10 10"
@@ -216,7 +216,7 @@
 
 
 
-<!------Game Directions------
+<!--Game Directions--
 <script>
   console.log("Hello World!");
   AFRAME.registerComponent('player-controls', { init: function() {
