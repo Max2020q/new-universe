@@ -1,4 +1,6 @@
+<!--Online 3D Game Design-->
 
+<!--Scene Team Engine-->
 
 <!---Game--->
 <body>
@@ -52,8 +54,7 @@
       id="Camera"
       camera 
       position="0 -2 0" 
-      mouse-cursor
-      orbit-controls="maxPolarAngle:  1.5; enablePan: false;  target: #Mode; enableDamping: true; dampingFactor: 0.125; rotateSpeed:0.25; minDistance:3; maxDistance:10;" >
+      orbit-controls="maxPolarAngle:  1.5; enablePan: false;  target: #Mode; enableDamping: true; dampingFactor: 0.125; rotateSpeed:0.25; minDistance:2; maxDistance:8;" >
         <a-cursor material="opacity:0" fuse="false">
         </a-cursor>
     </a-entity>
@@ -105,7 +106,7 @@
 </a-scene>
 </body>
 
-<!--Game Design Script Below-->
+<!--Game Design Script (Below)-->
 <!--Game Title, Icon, Scripts, Packages-->
 
 <head>
@@ -113,21 +114,22 @@
   <link 
   rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/Icons%2Ffavicon.ico?alt=media&token=c8d453c0-5f17-4c66-b53f-0be770e00ae4"
   />
-  <meta 
-  name="theme-color" 
-  content="#000"
-  />
   <script src="https://cdn.jsdelivr.net/npm/sesh-aframe4@0.8.3/dist/aframe-master.min.js"></script>
+  <meta name="theme-color" content="#000"
+  />
 
   <!--
   //
-  //-- GAME DESIGN SCRIPTING
-  //-- (Included) Third Person Character Controller
-  //-- Example: This enables player rotation with camera & player interactivity.
-  //-- 
-  //-- Do not include comment inside script or else it will not work on mobile
-  //-- Please make sure to include a semicolon at the end of code statements
-  //--
+  -- MAIN GAME DESIGN SCRIPT
+  //
+  -- Third Person Character Controller (Included)
+  -- Script: Enables player rotation with camera & player interactivity.
+  //
+  -- Please make sure to include a semicolon at the end of code statements
+  //
+  -- Do not include comment inside script or else it will not work on mobile
+  //
+  //
   -->        
   <script>
     AFRAME.registerComponent('third-person-controls', {
@@ -157,20 +159,26 @@
 
   <!--
   //
-  //-- Game Packages
-  //-- Customize Game Engine with Packages
+  //-- Scene Team Game Engine
   //-- Improve Games with custom packages
+  //-- Customize Game Engine with Packages
   //
-  //-- HOW TO PUBLISH A CUSTOM PACKAGE 
-  //-- https://www.gitpod.io/
-  //--  npm init -y
-  //--  npm login (enter username-password-email)
-  //--  Change and save new version in package.json
-  //--  npm publish .
-  //--  https://www.npmjs.com/ and search for package
-  //--  https://www.jsdelivr.com/features to find package
-  //--
+  //
+  // HOW TO CREATE AND PUBLISH A CUSTOM PACKAGE 
+  -- https://www.gitpod.io/
+  -- npm init -y
+  -- npm login (enter username-password-email)
+  -- Change and save new version in package.json
+  -- npm publish .
+  -- https://www.npmjs.com/ and search for package
+  -- https://www.jsdelivr.com/features to find script
+  -- https://www.jsdelivr.com/package/npm/*enter name*
+  -- Copy/Paste URL link to include script into game
+  //
+  //
   -->  
+
+  <!--Game Engine Packages-->
   <script src="https://cdn.jsdelivr.net/npm/aframe-scene-extras@5.1.8/dist/aframe-extras.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-orbit-controls-component-3@0.1.14/dist/aframe-orbit-controls-component.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-navigate-on-click@1.1.0/aframe-navigate-on-click.js"></script>
