@@ -1,9 +1,6 @@
-<!--Online 3D Game Design-->
-
-<!--Scene Team Engine-->
-
-<!---Game--->
 <body>
+
+  <!--Scene Team Engine-->
   <a-scene
     bloom
     stats="false"
@@ -25,7 +22,7 @@
 	<a-entity 
     id="Game_Camera" 
     kinematic-body
-    movement-controls="speed:0.4; fly:false ;controls:touch; constrainToNavMesh: true;"
+    movement-controls="speed:0.4; fly:false ;controls:touch;"
     position="0 12 0"
     scale="3 3 3">
 
@@ -61,17 +58,14 @@
     </a-entity>
 	</a-entity>
 
-  <!---Game Sound---> 
+  <!---Game World Sound---> 
   <a-entity 
     id="sound"
     position="0 0 0" 
     sound="src: url( ); autoplay: true; volume: 60; loop: true;">
   </a-entity>
 
-  <!---Wall Collisions--->
-  <a-box static-body material="opacity:0.4"  color="tomato" position="10 0 4" depth="40" width="10" height="40" ></a-box>
-
-	<!--Game World-->
+	<!--Game World Model-->
   <a-entity 
     id="World" 
     shadow
@@ -80,7 +74,18 @@
     position="0 0 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
   </a-entity>
 
-	<!--Character Navigation Map-->
+  <!---Wall Colliders--->
+  <a-box 
+    static-body 
+    material="opacity:0.4"  
+    color="tomato" 
+    position="10 0 4" 
+    depth="40" 
+    width="10" 
+    height="40" >
+  </a-box>
+
+	<!--Navigation Map-->
 	<a-entity 
     id="NavMesh" 
 	  nav-mesh
