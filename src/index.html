@@ -4,12 +4,12 @@
 
 <!---Game--->
 <body>
-<a-scene
-  bloom
-  stats="false"
-  physics="gravity:0"
-  vr-mode-ui="enabled: false"
-  fog="color: white;density: 0.00;type: exponential;">
+  <a-scene
+    bloom
+    stats="false"
+    physics="gravity:0"
+    vr-mode-ui="enabled: false"
+    fog="color: white;density: 0.00;type: exponential;">
 
 	<!----Skybox---->
 	<a-sky 
@@ -25,7 +25,7 @@
 	<a-entity 
     id="Game_Camera" 
     kinematic-body
-    movement-controls="speed:0.4; fly:false ;controls:touch;"
+    movement-controls="speed:0.4; fly:false ;controls:touch; constrainToNavMesh: true;"
     position="0 12 0"
     scale="3 3 3">
 
@@ -40,13 +40,13 @@
         id="Mode"
         scale="1 1 1"
         rotation="0 0 0"
-        position="0 -2 -9" 
+        position="0 -2 -2" 
         camera-cube-env="resolution:100;"
         animation-mixer="timeScale: 1.000"
         gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/assets%2F0038301a-5528-4f6f-a089-5b851bf7001f.glb?alt=media&token=a274ded3-59e7-4ee9-89db-84f0d66a3a9d"
         nav-agent="speed: 4.5"
-        static-body
-        third-person-controls>
+        kinematic-body
+        game-controls>
       </a-entity>
     </a-box>
 
@@ -54,6 +54,7 @@
       id="Camera"
       camera 
       position="0 -2 0" 
+      kinematic-body
       orbit-controls="maxPolarAngle:  1.5; enablePan: false;  target: #Mode; enableDamping: true; dampingFactor: 0.125; rotateSpeed:0.25; minDistance:2; maxDistance:8;" >
         <a-cursor material="opacity:0" fuse="false">
         </a-cursor>
@@ -66,6 +67,28 @@
     position="0 0 0" 
     sound="src: url( ); autoplay: true; volume: 60; loop: true;">
   </a-entity>
+
+  <!---Wall Collisions--->
+  <a-box static-body material="opacity:0.4"  color="tomato" position="10 0 4" depth="40" width="10" height="40" ></a-box>
+
+	<!--Game World-->
+  <a-entity 
+    id="World" 
+    shadow
+    scale="5 1 5" 
+    rotation="0 0 0" 
+    position="0 0 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
+  </a-entity>
+
+	<!--Character Navigation Map-->
+	<a-entity 
+    id="NavMesh" 
+	  nav-mesh
+    visible="true" 
+    scale="5 5 5" 
+    rotation="0 0 0" 
+    position="0 5 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
+	</a-entity>
 
 	<!---Lights--->
 	<a-light 
@@ -84,39 +107,9 @@
     color="white" 
     type="directional">
 	</a-light>
-  
-	<!--Game World-->
-  <a-entity 
-    id="World" 
-    shadow
-    scale="5 1 5" 
-    rotation="0 0 0" 
-    position="0 0 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
-  </a-entity>
-
-	<!--Character Navigation Map-->
-	<a-entity 
-    id="NavMesh" 
-	  nav-mesh
-    visible="false" 
-    scale="5 5 5" 
-    rotation="0 0 0" 
-    position="0 0 4" gltf-model="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/G8xNtAPcsu3Bi2P7IMwW%2Fnavmesh%20(6).gltf?alt=media&token=985c3bc1-6b5e-4b6b-b4c6-6ea313ec3f7d">
-	</a-entity>
 </a-scene>
 </body>
 
-<!--Game Design Script (Below)-->
-<!--Game Title, Icon, Scripts, Packages-->
-
-<head>
-  <title> Scene. </title> 
-  <link 
-  rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/Icons%2Ffavicon.ico?alt=media&token=c8d453c0-5f17-4c66-b53f-0be770e00ae4"
-  />
-  <script src="https://cdn.jsdelivr.net/npm/sesh-aframe4@0.8.3/dist/aframe-master.min.js"></script>
-  <meta name="theme-color" content="#000"
-  />
 
   <!--
   //
@@ -130,9 +123,20 @@
   -- Do not include comment inside script or else it will not work on mobile
   //
   //
-  -->        
+  -->   
+
+<head>
+  <title> Scene. </title> 
+  <link 
+  rel="shortcut icon" 
+  href="https://firebasestorage.googleapis.com/v0/b/timbre-d11e2.appspot.com/o/Icons%2Ffavicon.ico?alt=media&token=c8d453c0-5f17-4c66-b53f-0be770e00ae4"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/sesh-aframe4@0.8.3/dist/aframe-master.min.js"></script>
+  <meta name="theme-color" content="#000"
+  />
+  
   <script>
-    AFRAME.registerComponent('third-person-controls', {
+    AFRAME.registerComponent('game-controls', {
       init: function () {},
       update: function () {
         var el = this.el;
@@ -147,9 +151,15 @@
         el.addEventListener('click', this.eventHandlerFn);
       },
       tick: function () {
+        var freemode = false;
         var player = document.getElementById('Mode');
         var camera = document.getElementById('Camera');
-        player.setAttribute('rotation', {x: 0, y: camera.getAttribute('rotation').y, z: 0});
+        if(freemode===true){
+          return;
+        }
+        else{
+          player.setAttribute('rotation', {x: 0, y: camera.getAttribute('rotation').y, z: 0});
+        }
       },
       remove: function () {},
       pause: function () {},
@@ -202,7 +212,7 @@
   <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script> 
   <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/tilt-turn/tilt-turn.js"></script>
   <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-state-component@1.8.0/dist/aframe-state-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-state-component@6.5.0/dist/aframe-state-component.min.js"></script>
   <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
   
   <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
@@ -244,7 +254,6 @@
   <script src="https://cdn.jsdelivr.net/npm/aframe-sesh-audio@0.3.0/components/noah-ra-room.min.js"></script>
   <script src="https://cdn.rawgit.com/noahneumark/aframe-resonance-audio/fe37437/components/noah-ra-src.min.js"></script>
   <script src="https://cdn.rawgit.com/noahneumark/aframe-resonance-audio/fe37437/components/noah-ra-beatsync.min.js"></script>
-
   <!--PACKAGES-->
 </head>
 </html>
